@@ -21,11 +21,9 @@ internal abstract class ChronosDatabase : RoomDatabase() {
 
         @Synchronized
         fun get(context: Context): ChronosDatabase {
-            if (instance == null) {
-                instance = Room.databaseBuilder(context.applicationContext,
-                        ChronosDatabase::class.java, DATABASE_NAME)
-                        .build()
-            }
+            instance = instance ?: Room.databaseBuilder(context.applicationContext,
+                    ChronosDatabase::class.java, DATABASE_NAME)
+                    .build()
             return instance!!
         }
     }
