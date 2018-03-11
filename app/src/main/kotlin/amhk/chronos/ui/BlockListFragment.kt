@@ -64,14 +64,14 @@ internal class BlockAdapter(private val context: Context,
             notifyItemRangeChanged(0, newItems.size)
         } else {
             val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
                         items[oldItemPosition].id == newItems[newItemPosition].id
 
                 override fun getOldListSize() = items.size
 
                 override fun getNewListSize() = newItems.size
 
-                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
                         items[oldItemPosition] == newItems[newItemPosition]
             })
             items = newItems
