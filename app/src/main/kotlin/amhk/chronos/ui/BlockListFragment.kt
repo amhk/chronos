@@ -23,7 +23,7 @@ internal class BlockListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        adapter = BlockAdapter(context, activity as Navigator)
+        adapter = BlockAdapter(context!!, activity as Navigator)
 
         viewModel = ViewModelProviders.of(this).get(BlockListViewModel::class.java)
         viewModel.liveData.observe(this, Observer<List<Block>> {
@@ -64,21 +64,15 @@ internal class BlockAdapter(private val context: Context,
             notifyItemRangeChanged(0, newItems.size)
         } else {
             val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                    val oldId = items[oldItemPosition].id
-                    val newId = newItems[newItemPosition].id
-                    return oldId == newId
-                }
+                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+                        items[oldItemPosition].id == newItems[newItemPosition].id
 
                 override fun getOldListSize() = items.size
 
                 override fun getNewListSize() = newItems.size
 
-                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                    val oldItem = items[oldItemPosition]
-                    val newItem = newItems[newItemPosition]
-                    return oldItem == newItem
-                }
+                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+                        items[oldItemPosition] == newItems[newItemPosition]
             })
             items = newItems
             result.dispatchUpdatesTo(this)
