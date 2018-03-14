@@ -11,8 +11,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.os.bundleOf
+import kotlinx.android.synthetic.main.fragment_block_details.view.*
 
 internal class BlockDetailsFragment : Fragment() {
     private var id: Long = ID_NOT_IN_DATABASE
@@ -31,13 +31,13 @@ internal class BlockDetailsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(BlockDetailsViewModel::class.java)
         viewModel.getBlockById(id).observe(this, Observer<Block> {
             it?.let {
-                view.findViewById<TextView>(R.id.block_details_id).apply {
+                view.block_details_id.apply {
                     text = it.id.toString()
                 }
-                view.findViewById<TextView>(R.id.block_details_begin).apply {
+                view.block_details_begin.apply {
                     text = it.begin.toString()
                 }
-                view.findViewById<TextView>(R.id.block_details_end).apply {
+                view.block_details_end.apply {
                     text = it.end.toString()
                 }
             }
