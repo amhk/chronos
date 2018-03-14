@@ -13,7 +13,7 @@ internal class BlockDetailsViewModel(app: Application) : AndroidViewModel(app) {
         var value = map[id]
         if (value == null) {
             value = dao.selectById(id) as LiveData<Block>
-            map.put(id, value)
+            map[id] = value
         }
         return value
     }
