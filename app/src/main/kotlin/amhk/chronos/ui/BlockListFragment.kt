@@ -23,7 +23,7 @@ internal class BlockListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        adapter = BlockAdapter(context, activity as Navigator)
+        adapter = BlockAdapter(context!!, activity as Navigator)
 
         viewModel = ViewModelProviders.of(this).get(BlockListViewModel::class.java)
         viewModel.liveData.observe(this, Observer<List<Block>> {

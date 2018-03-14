@@ -20,7 +20,7 @@ internal class BlockDetailsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        id = arguments.getLong("id", ID_NOT_IN_DATABASE)
+        id = arguments!!.getLong("id", ID_NOT_IN_DATABASE)
         if (id == ID_NOT_IN_DATABASE) {
             throw IllegalArgumentException("fragment argument 'id' missing")
         }
