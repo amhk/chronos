@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
+import androidx.view.forEach
 
 internal interface Navigator {
     fun goForward(newFragment: Fragment)
@@ -25,9 +26,8 @@ class MainActivity : AppCompatActivity(), Navigator {
 
         val navigationView = findViewById<NavigationView>(R.id.main_navigation)
         navigationView.setNavigationItemSelectedListener {
-            for (i in 0 until navigationView.menu.size()) {
-                val item = navigationView.menu.getItem(i)
-                item.isChecked = it.title == item.title
+            navigationView.menu.forEach {
+                item -> item.isChecked = it.title == item.title
             }
 
             drawer.closeDrawer(navigationView, true)

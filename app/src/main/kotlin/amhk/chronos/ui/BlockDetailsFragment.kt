@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.os.bundleOf
 
 internal class BlockDetailsFragment : Fragment() {
     private var id: Long = ID_NOT_IN_DATABASE
@@ -47,10 +48,8 @@ internal class BlockDetailsFragment : Fragment() {
 
     internal companion object {
         fun newInstance(id: Long): BlockDetailsFragment {
-            val args = Bundle()
-            args.putLong("id", id)
             val fragment = BlockDetailsFragment()
-            fragment.arguments = args
+            fragment.arguments = bundleOf(Pair("id", id))
             return fragment
         }
     }
