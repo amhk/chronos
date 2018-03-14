@@ -17,17 +17,18 @@ internal abstract class ChronosDatabase : RoomDatabase() {
     abstract fun blockEntityDao(): BlockEntityDao
 
     companion object {
+        @Volatile
         private var instance: ChronosDatabase? = null
 
-        @Synchronized
-        fun get(context: Context): ChronosDatabase {
-            if (instance == null) {
-                instance = Room.databaseBuilder(context.applicationContext,
+        fun get(context: Context): ChronosDatabase =
+                instance ?: synchronized(this) {
+                    instance ?: buildDatabase(context)
+                }
+
+        private fun buildDatabase(context: Context) =
+                Room.databaseBuilder(context.applicationContext,
                         ChronosDatabase::class.java, DATABASE_NAME)
                         .build()
-            }
-            return instance!!
-        }
     }
 }
 

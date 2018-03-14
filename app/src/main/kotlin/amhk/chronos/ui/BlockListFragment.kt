@@ -15,6 +15,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import kotlinx.android.synthetic.main.block_item.view.*
+import kotlinx.android.synthetic.main.fragment_block_list.*
 
 internal class BlockListFragment : Fragment() {
     private lateinit var viewModel: BlockListViewModel
@@ -23,7 +25,7 @@ internal class BlockListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        adapter = BlockAdapter(context, activity as Navigator)
+        adapter = BlockAdapter(context!!, activity as Navigator)
 
         viewModel = ViewModelProviders.of(this).get(BlockListViewModel::class.java)
         viewModel.liveData.observe(this, Observer<List<Block>> {
@@ -38,7 +40,7 @@ internal class BlockListFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_block_list, container, false)
 
-        view.findViewById<RecyclerView>(R.id.block_list).also {
+        block_list.also {
             it.layoutManager = LinearLayoutManager(context)
             it.adapter = adapter
         }
@@ -64,21 +66,15 @@ internal class BlockAdapter(private val context: Context,
             notifyItemRangeChanged(0, newItems.size)
         } else {
             val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                    val oldId = items[oldItemPosition].id
-                    val newId = newItems[newItemPosition].id
-                    return oldId == newId
-                }
+                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+                        items[oldItemPosition].id == newItems[newItemPosition].id
 
                 override fun getOldListSize() = items.size
 
                 override fun getNewListSize() = newItems.size
 
-                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                    val oldItem = items[oldItemPosition]
-                    val newItem = newItems[newItemPosition]
-                    return oldItem == newItem
-                }
+                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+                        items[oldItemPosition] == newItems[newItemPosition]
             })
             items = newItems
             result.dispatchUpdatesTo(this)
@@ -101,7 +97,7 @@ internal class BlockAdapter(private val context: Context,
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val textView: TextView = view.findViewById(R.id.text)
+        private val textView: TextView = view.text
 
         fun bind(item: Block) {
             textView.text = "Block ${item.id}"

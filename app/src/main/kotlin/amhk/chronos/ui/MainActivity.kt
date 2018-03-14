@@ -3,11 +3,11 @@ package amhk.chronos.ui
 import amhk.chronos.R
 import android.os.Bundle
 import android.support.annotation.IdRes
-import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
+import androidx.view.forEach
+import kotlinx.android.synthetic.main.activity_main.*
 
 internal interface Navigator {
     fun goForward(newFragment: Fragment)
@@ -16,21 +16,17 @@ internal interface Navigator {
 }
 
 class MainActivity : AppCompatActivity(), Navigator {
-    private lateinit var drawer: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        drawer = findViewById(R.id.drawer_layout)
 
-        val navigationView = findViewById<NavigationView>(R.id.main_navigation)
-        navigationView.setNavigationItemSelectedListener {
-            for (i in 0 until navigationView.menu.size()) {
-                val item = navigationView.menu.getItem(i)
-                item.isChecked = it.title == item.title
+        main_navigation.setNavigationItemSelectedListener {
+            main_navigation.menu.forEach {
+                item -> item.isChecked = it.title == item.title
             }
 
-            drawer.closeDrawer(navigationView, true)
+            drawer_layout.closeDrawer(main_navigation, true)
             when (it.title) {
                 "Block list" -> goReplace(BlockListFragment.newInstance())
                 "bar" -> goReplace(BarFragment.newInstance())
