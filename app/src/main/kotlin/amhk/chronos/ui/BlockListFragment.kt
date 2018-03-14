@@ -15,6 +15,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import kotlinx.android.synthetic.main.block_item.view.*
+import kotlinx.android.synthetic.main.fragment_block_list.view.*
 
 internal class BlockListFragment : Fragment() {
     private lateinit var viewModel: BlockListViewModel
@@ -38,7 +40,7 @@ internal class BlockListFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_block_list, container, false)
 
-        view.findViewById<RecyclerView>(R.id.block_list).also {
+        view.block_list.also {
             it.layoutManager = LinearLayoutManager(context)
             it.adapter = adapter
         }
@@ -95,7 +97,7 @@ internal class BlockAdapter(private val context: Context,
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val textView: TextView = view.findViewById(R.id.text)
+        private val textView: TextView = view.text
 
         fun bind(item: Block) {
             textView.text = "Block ${item.id}"
