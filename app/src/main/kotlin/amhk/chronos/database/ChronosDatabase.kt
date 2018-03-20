@@ -39,7 +39,7 @@ internal object Converters {
     @JvmStatic
     fun toOffsetDateTime(value: String?): OffsetDateTime? {
         return value?.let {
-            return formatter.parse(value, OffsetDateTime::from)
+            return formatter.parse(it, OffsetDateTime::from)
         }
     }
 
