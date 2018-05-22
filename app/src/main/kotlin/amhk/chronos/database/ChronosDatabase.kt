@@ -1,7 +1,9 @@
 package amhk.chronos.database
 
-import android.arch.persistence.room.*
 import android.content.Context
+
+import androidx.room.*
+
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.format.DateTimeFormatter
 

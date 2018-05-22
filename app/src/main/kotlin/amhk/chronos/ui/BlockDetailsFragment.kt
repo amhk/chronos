@@ -4,14 +4,17 @@ import amhk.chronos.R
 import amhk.chronos.database.ID_NOT_IN_DATABASE
 import amhk.chronos.model.Block
 import amhk.chronos.model.BlockDetailsViewModel
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.os.bundleOf
+
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+
 import kotlinx.android.synthetic.main.fragment_block_details.view.*
 
 internal class BlockDetailsFragment : Fragment() {

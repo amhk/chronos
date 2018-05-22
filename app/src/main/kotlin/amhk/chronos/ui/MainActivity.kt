@@ -1,12 +1,15 @@
 package amhk.chronos.ui
 
 import amhk.chronos.R
+
 import android.os.Bundle
-import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v7.app.AppCompatActivity
-import androidx.view.forEach
+
+import androidx.annotation.IdRes
+import androidx.core.view.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 internal interface Navigator {

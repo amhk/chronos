@@ -3,18 +3,21 @@ package amhk.chronos.ui
 import amhk.chronos.R
 import amhk.chronos.model.Block
 import amhk.chronos.model.BlockListViewModel
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
 import kotlinx.android.synthetic.main.block_item.view.*
 import kotlinx.android.synthetic.main.fragment_block_list.view.*
 
@@ -39,7 +42,6 @@ internal class BlockListFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_block_list, container, false)
-
         view.block_list.also {
             it.layoutManager = LinearLayoutManager(context)
             it.adapter = adapter

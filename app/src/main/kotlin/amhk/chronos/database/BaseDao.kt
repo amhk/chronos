@@ -1,8 +1,8 @@
 package amhk.chronos.database
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
 
 internal abstract class BaseDao {
     protected fun <T> LiveData<T>.getDistinct(): LiveData<T> {
