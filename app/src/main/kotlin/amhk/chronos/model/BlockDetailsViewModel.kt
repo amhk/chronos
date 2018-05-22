@@ -12,6 +12,7 @@ internal class BlockDetailsViewModel(app: Application) : AndroidViewModel(app) {
     fun getBlockById(id: Long): LiveData<Block> {
         var value = map[id]
         if (value == null) {
+            @Suppress("UNCHECKED_CAST")
             value = dao.selectById(id) as LiveData<Block>
             map[id] = value
         }
