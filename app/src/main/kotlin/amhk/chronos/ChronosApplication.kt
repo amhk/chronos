@@ -4,7 +4,7 @@ import android.app.Application
 
 import com.jakewharton.threetenabp.AndroidThreeTen
 
-class ChronosApplication: Application() {
+class ChronosApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)

@@ -5,7 +5,7 @@ import amhk.chronos.R
 import android.os.Bundle
 
 import androidx.annotation.IdRes
-import androidx.core.view.*
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.appcompat.app.AppCompatActivity
@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity(), Navigator {
 
     override fun goReplace(newFragment: Fragment) =
             supportFragmentManager.goReplace(R.id.main_container, newFragment)
-
 }
 
 private fun FragmentManager.goForward(@IdRes containerId: Int, newFragment: Fragment) {

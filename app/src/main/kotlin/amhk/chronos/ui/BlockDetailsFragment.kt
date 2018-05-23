@@ -21,9 +21,11 @@ internal class BlockDetailsFragment : Fragment() {
     private var id: Long = ID_NOT_IN_DATABASE
     private lateinit var viewModel: BlockDetailsViewModel
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         id = arguments!!.getLong("id", ID_NOT_IN_DATABASE)
         if (id == ID_NOT_IN_DATABASE) {
             throw IllegalArgumentException("fragment argument 'id' missing")

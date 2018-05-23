@@ -38,9 +38,11 @@ internal class BlockListFragment : Fragment() {
         })
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val view = inflater.inflate(R.layout.fragment_block_list, container, false)
         view.block_list.also {
             it.layoutManager = LinearLayoutManager(context)
@@ -57,10 +59,11 @@ internal class BlockListFragment : Fragment() {
     }
 }
 
-internal class BlockAdapter(private val context: Context,
-                          private val navigator: Navigator,
-                          private var items: List<Block> = ArrayList()) :
-        RecyclerView.Adapter<BlockAdapter.ViewHolder>() {
+internal class BlockAdapter(
+    private val context: Context,
+    private val navigator: Navigator,
+    private var items: List<Block> = ArrayList()
+) : RecyclerView.Adapter<BlockAdapter.ViewHolder>() {
 
     fun setItems(newItems: List<Block>) {
         if (items.isEmpty()) {
